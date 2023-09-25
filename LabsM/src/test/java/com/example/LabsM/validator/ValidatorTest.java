@@ -1,9 +1,15 @@
 package com.example.LabsM.validator;
 
+import com.example.LabsM.entity.Response;
 import com.example.LabsM.entity.Triangle;
 import com.example.LabsM.entity.TriangleError;
+import com.example.LabsM.entity.TriangleParams;
 import com.example.LabsM.validator.TriangleValidator;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidatorTest {
@@ -48,5 +54,16 @@ public class ValidatorTest {
         TriangleError result = validator.validateInput(num1, num2, num3);
         assertEquals("Length must be a number!", result.getMessage());
         assertEquals("BAD_REQUEST", result.getStatus());
+    }
+    @Test
+    public void testMultipleValidation() {
+        List<TriangleParams> list = new ArrayList<>();
+        list.add(new TriangleParams("12", "13", "14"));
+        list.add(new TriangleParams("12", "abc", "15"));
+        List<Response> resultList = validator.validateMultipleTriangles(list);
+        assertNotNull(resultList);
+        assertEquals(2, resultList.size());
+        assertNotNull(resultList.get(1).getError());
+        assertEquals(14, resultList.get(0).getTriangle().getSide3());
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @RestControllerAdvice(annotations = CustomExceptionHandler.class)
 public class ExceptionsHandler {
-    private static final Logger logger = LoggerFactory.getLogger(TriangleController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionsHandler.class);
     @ExceptionHandler(InternalServerException.class)
     public ResponseEntity<Object> InternalServerException(InternalServerException exception) {
         logger.error("INTERNAL SERVER ERROR!");
