@@ -1,5 +1,4 @@
 # LabsJava
-<hr>
 <h3>Lab1:</h3>
 Rest service to get triangle area and perimeter. Input 3 sides
 <hr>
